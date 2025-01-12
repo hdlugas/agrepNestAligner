@@ -6,8 +6,10 @@ Alignment algorithm designed specifically for aligning small RNA-sequencing data
 - [1. Motivation for agrepNestAligner](#motivation)
 - [2. Installation](#installation)
 - [3. Usage](#usage)
-   - [3.1 Build reference database index](#build-ref-db-index)
-   - [3.2 Run agrepNestAligner](#run-aligner)
+   - [3.1. Suggested preprocessing](#preprocessing)
+   - [3.2 Build reference database index](#build-ref-db-index)
+   - [3.3 Run agrepNestAligner](#run-aligner)
+   - [3.4 Create count matrix](#create-count-matrix)
 
 <a name="motivation"></a>
 ## 1. Motivation for agrepNestAligner
@@ -15,11 +17,20 @@ Common bioinformatics workflows which process small RNA-sequencing data typicall
 
 <a name="installation"></a>
 ## 2. Installation
-The dependencies of agrepNestAligner are tre-agrep, sed, and awk. All UNIX-based operating systems typically have sed and awk installed by default, so the only tre-agrep must be installed. Note that tre-agrep is used instead of grep becaue tre-agrep allows the user to input a maximum number of mismatches when matching regular expressions. We recommend creating a conda environment for using agrepNestAligner with tre-agrep installed, which can be done executing the following commands once conda is installed on your system:
+The dependencies of agrepNestAligner are tre-agrep, sed, and awk. All UNIX-based operating systems typically have sed and awk installed by default, so only tre-agrep must be installed. Note that tre-agrep is used instead of grep becaue tre-agrep allows the user to input a maximum number of mismatches when matching regular expressions. However, if you would like to (i) extract the unique molecular identifier (UMI) sequences from reads and (ii) filter reads based on length (i.e. number of nucleotides) as is recommended by both us and Kapoor et al in "A bioinformatics approach to microRNA-sequencing analysis" ([https://www.sciencedirect.com/science/article/pii/S266591312030131X](https://www.sciencedirect.com/science/article/pii/S266591312030131X)), then umi_tools and cutadapt must also be installed. We recommend creating a conda environment with the necessary dependencies, which can be done executing the following commands once conda is installed on your system, you have downloaded this repository, and have navigated to the directory that contains the environment.yml file:
 ```
-conda create -n agrepNestAligner_env
+conda env create -f environment.yml
+
+#conda create -n agrepNestAligner_env
+#conda activate agrepNestAligner_env
+#conda install tsnyder::tre=0.8.0.1
+#conda install -c bioconda -c conda-forge umi_tools=1.1.6
+#conda install -c conda-forge python=3.12
+#python3 -m pip install --user --upgrade cutadapt
+```
+To activate the agrepNestAligner_env environment, run:
+```
 conda activate agrepNestAligner_env
-conda install tsnyder::tre
 ```
 To deactivate the agrepNestAligner_env conda environement, run:
 ```
@@ -30,11 +41,18 @@ For instructions on installing conda on your system, see [https://docs.conda.io/
 <a name="usage"></a>
 ## 3. Usage
 
+<a name="preprocessing"></a>
+## 3.1. Suggested preprocessing
+We recommend performing the first two steps of data preprocessing proposed by Kapoor et al in "A bioinformatics approach to microRNA-sequencing analysis" ([https://www.sciencedirect.com/science/article/pii/S266591312030131X](https://www.sciencedirect.com/science/article/pii/S266591312030131X)) which involve (i) extracting unique molecular identifiers (UMIs) from reads in the original FASTQ files and (ii) filtering reads to keep only reads with a length (i.e. number of nucleotides) in a specified range.
+
 <a name="build-ref-db-index"></a>
-## 3.1. Build reference database index
+## 3.2. Build reference database index
 
 <a name="run-aligner"></a>
-## 3.2. Run agrepNestAligner
+## 3.3. Run agrepNestAligner
+
+<a name="create-count-matrix"></a>
+## 3.4. Create count matrix
 
 
 
