@@ -50,6 +50,6 @@ We recommend performing the first two steps of data preprocessing proposed by Ka
 
 <a name="downstream-analysis"></a>
 ## 4. Downstream analysis
-Once the count matrix with rows corresponding to ncRNAs and columns corresponding to samples is computed, there are a variety of tools available which perform differential transcription analysis to identify ncRNAs transcribed in significantly different levels, most of which use negative binomial regression. Some options include DESeq2, edgeR, or limma.
+Once the count matrix with rows corresponding to ncRNAs and columns corresponding to samples is computed, there are a variety of tools available which perform differential transcription analysis to identify ncRNAs transcribed in significantly different levels among sample groups of interest, most of which use negative binomial regression. Some options include DESeq2, edgeR, or limma.
 
 
