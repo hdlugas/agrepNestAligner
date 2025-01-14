@@ -86,6 +86,24 @@ For example, the following writes a reference database to $REFERENCE_ncRNA_DATAB
 
 <a name="run-aligner"></a>
 ### 3.3. Run agrepNestAligner
+Once the reference database is constructed, agrepNestAligner.sh can be used to align the reads of a given FASTQ file to the reference database. To see the usage of the script agrepNestAligner.sh, run:
+```
+/insert_path/agrepNestAligner.sh -h
+``
+Output:
+```
+Usage: ./agrepNestAligner.sh -x <INT> -@ <INT> -i <input_FASTQ_file> -r <reference_database_directory> -o <output_directory>
+
+Options:
+  -x <maximum number of mismatches allowed>        Integer specifying the maximum number of mismatches allowed during alignment. Default = 0.
+  -@ <number of threads>                           Integer specifying the number of threads to utilize. Default = 1.
+  -i <input_FASTQ_file>                            Specifies the input FASTQ file. Mandatory argument.
+  -r <reference_database_directory>                Path to the directory containing the reference database created from build_reference_database.sh. Mandatory argument.
+  -o <output_directory>                            Specifies the directory the output TXT file should be written to. Mandatory argument.
+  -h                                               Shows this help message.
+```
+
+For example, the following aligns the FASTA file $POST_CUTADAPT_FASTQ to the reference database $REFERENCE_ncRNA_DATABASE_DIRECTORY and writes the output to the directory $ALIGNMENT_OUTPUT_DIRECTORY:
 ```
 /insert_path/agrepNestAligner.sh \
   -x 1 \
@@ -97,6 +115,7 @@ For example, the following writes a reference database to $REFERENCE_ncRNA_DATAB
 
 <a name="create-count-matrix"></a>
 ### 3.4. Create count matrix
+Once all samples are aligned with output written to the directory $ALIGNMENT_OUTPUT_DIRECTORY, the alignment information is consolidated into a count matrix with rows corresponding to ncRNAs and columns corresponding to samples.
 ```
 /insert_path/create_count_matrix.sh \
   -i ALIGNMENT_OUTPUT_DIRECTORY
