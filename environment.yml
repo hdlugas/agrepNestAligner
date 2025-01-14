@@ -1,0 +1,12 @@
+name: agrepNestAligner_env
+channels:
+  - conda-forge
+  - bioconda
+  - tsnyder
+dependencies:
+  - python=3.12
+  - umi_tools=1.1.6
+  - tre=0.8.0.1
+  - pip
+  - pip:
+      - cutadapt==5.0
