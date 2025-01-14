@@ -59,9 +59,11 @@ Building a reference database from the reference FASTA file greatly increases sp
 
 To see the usage of the script build_reference_database.sh, run:
 ```
-/insert_path/build_reference_database.sh -h
+(agrepNestAligner) user@hostname:/home/user/projects/data_analysis$ /insert_path/build_reference_database.sh -h
 
 Usage: ./build_reference_database.sh --min-nucleotides <INT> --max-nucleotides <INT> -x <INT> -r <reference_FASTA_file> -o <output_directory>
+
+Builds reference database corresponding to a reference FASTA file. This step is necessary prior to running agrepNestAligner.
 
 Options:
   --min-nucleotides <INT>                          Integer value of the minimum number of nucleotides each reference sequence must contain to be considered, inclusive. Default = 18.
@@ -86,9 +88,11 @@ For example, the following writes a reference database to $REFERENCE_ncRNA_DATAB
 ### 3.3. Run agrepNestAligner
 Once the reference database is constructed, agrepNestAligner.sh can be used to align the reads of a given FASTQ file to the reference database. To see the usage of the script agrepNestAligner.sh, run:
 ```
-/insert_path/agrepNestAligner.sh -h
+(agrepNestAligner) user@hostname:/home/user/projects/data_analysis$ /insert_path/agrepNestAligner.sh -h
 
 Usage: ./agrepNestAligner.sh -x <INT> -@ <INT> -i <input_FASTQ_file> -r <reference_database_directory> -o <output_directory>
+
+Aligns reads in a given FASTQ file to a reference database of ncRNAs using agrep.
 
 Options:
   -x <maximum number of mismatches allowed>        Integer specifying the maximum number of mismatches allowed during alignment. Default = 0.
@@ -113,7 +117,7 @@ For example, the following aligns the FASTA file $POST_CUTADAPT_FASTQ to the ref
 ### 3.4. Create count matrix
 Once all samples are aligned with output written to the directory $ALIGNMENT_OUTPUT_DIRECTORY, the alignment information is consolidated into a count matrix with rows corresponding to ncRNAs and columns corresponding to samples. To see the usage of the script create_count_matrix.sh, run:
 ```
-/insert_path/create_count_matrix.sh -h
+(agrepNestAligner) user@hostname:/home/user/projects/data_analysis$ /insert_path/create_count_matrix.sh -h
 
 Usage: ./create_count_matrix.sh -i <input_directory>
 
