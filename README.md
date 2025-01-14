@@ -34,6 +34,10 @@ For instructions on installing conda on your system, see [https://docs.conda.io/
 
 <a name="usage"></a>
 ## 3. Usage
+For an example of the complete recommended workflow, download the toy_example directory, activate the agrepNestAligner_env conda environment, and run the script example.sh using a command such as:
+```
+(agrepNestAligner) user@hostname:/home/user/projects/data_analysis$ /insert_path/example.sh
+```
 
 <a name="preprocessing"></a>
 ### 3.1. Suggested preprocessing
