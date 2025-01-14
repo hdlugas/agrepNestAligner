@@ -62,6 +62,7 @@ To see the usage of the script build_reference_database.sh, run:
 /insert_path/build_reference_database.sh -h
 ```
 Output:
+```
 Usage: ./build_reference_database.sh --min-nucleotides <INT> --max-nucleotides <INT> -x <INT> -r <reference_FASTA_file> -o <output_directory>
 
 Options:
@@ -71,7 +72,9 @@ Options:
   -r <reference_FASTA_file>                        Specifies the FASTA file of reference sequences. Mandatory argument.
   -o <output_directory>                            Specifies the directory the reference database will be written to. Mandatory argument.
   -h                                               Shows this help message.
+```
 
+For example, the following writes a reference database to $REFERENCE_ncRNA_DATABASE_DIRECTORY with reference ncRNA FASTA file $REFERENCE_ncRNAs_FASTA:
 ```
 /insert_path/build_reference_database.sh \
   --min-nucleotides 16 \
