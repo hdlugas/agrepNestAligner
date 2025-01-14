@@ -60,9 +60,7 @@ Building a reference database from the reference FASTA file greatly increases sp
 To see the usage of the script build_reference_database.sh, run:
 ```
 /insert_path/build_reference_database.sh -h
-```
-Output:
-```
+
 Usage: ./build_reference_database.sh --min-nucleotides <INT> --max-nucleotides <INT> -x <INT> -r <reference_FASTA_file> -o <output_directory>
 
 Options:
@@ -89,9 +87,7 @@ For example, the following writes a reference database to $REFERENCE_ncRNA_DATAB
 Once the reference database is constructed, agrepNestAligner.sh can be used to align the reads of a given FASTQ file to the reference database. To see the usage of the script agrepNestAligner.sh, run:
 ```
 /insert_path/agrepNestAligner.sh -h
-``
-Output:
-```
+
 Usage: ./agrepNestAligner.sh -x <INT> -@ <INT> -i <input_FASTQ_file> -r <reference_database_directory> -o <output_directory>
 
 Options:
@@ -115,10 +111,23 @@ For example, the following aligns the FASTA file $POST_CUTADAPT_FASTQ to the ref
 
 <a name="create-count-matrix"></a>
 ### 3.4. Create count matrix
-Once all samples are aligned with output written to the directory $ALIGNMENT_OUTPUT_DIRECTORY, the alignment information is consolidated into a count matrix with rows corresponding to ncRNAs and columns corresponding to samples.
+Once all samples are aligned with output written to the directory $ALIGNMENT_OUTPUT_DIRECTORY, the alignment information is consolidated into a count matrix with rows corresponding to ncRNAs and columns corresponding to samples. To see the usage of the script create_count_matrix.sh, run:
+```
+/insert_path/create_count_matrix.sh -h
+
+Usage: ./create_count_matrix.sh -i <input_directory>
+
+Consolidates agrepNestAligner alignment information into count matrix with rows corresponding to ncRNAs and columns corresponding to samples. The tab-delimited text file count_matrix.txt will be written to the input_directory argument.
+
+Options:
+  -i <input_directory>                             Specifies the directory the agrepNestAligner output was written to. Mandatory argument.
+  -h                                               Shows this help message.
+```
+
+For example, the following writes the count matrix to the directory $ALIGNMENT_OUTPUT_DIRECTORY once all agrepNestAligner alignments have been written to $ALIGNMENT_OUTPUT_DIRECTORY:
 ```
 /insert_path/create_count_matrix.sh \
-  -i ALIGNMENT_OUTPUT_DIRECTORY
+  -i $ALIGNMENT_OUTPUT_DIRECTORY
 ```
 
 <a name="downstream-analysis"></a>
