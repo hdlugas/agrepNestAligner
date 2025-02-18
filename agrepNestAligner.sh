@@ -217,7 +217,7 @@ align_chunk_reads() {
                 ALIGNMENT_FLAG=true
             fi
         done
-    done >> ${OUTPUT_DIR}/${SAMPLE_BASENAME}_chunk_${n}.txt
+    done >> ${OUTPUT_DIR}/${SAMPLE_BASENAME}_x_${N_MISMATCHES_ALLOWED}_chunk_${n}.txt
 }
 
 # loop through N_CHUNKS and align 10,000 unique reads in each chunk
@@ -256,8 +256,8 @@ fi
 set +f
 
 # consolidate the chunks of the alignments into a single file summarizing the overall alignment
-cat ${OUTPUT_DIR}/${SAMPLE_BASENAME}_chunk_* > $OUTPUT_TXT
-rm ${OUTPUT_DIR}/${SAMPLE_BASENAME}_chunk_*
+cat ${OUTPUT_DIR}/${SAMPLE_BASENAME}_x_${N_MISMATCHES_ALLOWED}_chunk_* > $OUTPUT_TXT
+rm ${OUTPUT_DIR}/${SAMPLE_BASENAME}_x_${N_MISMATCHES_ALLOWED}_chunk_*
 
 # delete temporary FASTQ file of unique reads
 rm $FASTQ_UNIQ
