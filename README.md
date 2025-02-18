@@ -32,9 +32,19 @@ conda deactivate
 ```
 For instructions on installing conda on your system, see [https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
 
+Additionally, you must make the files build_reference_database.sh, agrepNestAligner.sh, and create_count_matrix.sh executable with the following command:
+```
+chmod +x build_reference_database.sh agrepNestAligner.sh create_count_matrix.sh
+```
+
 <a name="usage"></a>
 ## 3. Usage
-For an example of the complete recommended workflow, download the toy_example directory, activate the agrepNestAligner_env conda environment, and run the script example.sh using a command such as:
+For an example of the complete recommended workflow, download the toy_example directory, activate the agrepNestAligner_env conda environment, and make the example script example.sh executable using a command such as:
+```
+(agrepNestAligner_env) user@hostname:/home/user/projects/data_analysis$ chmod +x /insert_path/example.sh
+```
+
+Then, run the script example.sh using:
 ```
 (agrepNestAligner_env) user@hostname:/home/user/projects/data_analysis$ /insert_path/example.sh
 ```
