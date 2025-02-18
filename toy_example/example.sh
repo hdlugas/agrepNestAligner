@@ -1,17 +1,14 @@
 #!/bin/bash
 
-
 # activate conda environment agrepNestAligner_env
 #source ~/.bashrc
 #conda activate agrepNestAligner_env
 
-
 # get path to current working directory
 CURRENT_DIRECTORY=$(pwd)
 
-
 # build reference database
-${CURRENT_DIRECTORY}/scripts/build_reference_database.sh \
+${CURRENT_DIRECTORY}/../build_reference_database.sh \
   --min-nucleotides 16 \
   --max-nucleotides 120 \
   -x 1 \
@@ -35,7 +32,7 @@ cutadapt \
   -o ${CURRENT_DIRECTORY}/data/sample1_post_cutadapt.fastq \
   ${CURRENT_DIRECTORY}/data/sample1_post_umi_extraction.fastq > ${CURRENT_DIRECTORY}/data/sample1_cutadapt_log_file.txt
 
-${CURRENT_DIRECTORY}/scripts/agrepNestAligner.sh \
+${CURRENT_DIRECTORY}/../agrepNestAligner.sh \
   -x 1 \
   -@ 1 \
   -i ${CURRENT_DIRECTORY}/data/sample1_post_cutadapt.fastq \
@@ -60,7 +57,7 @@ cutadapt \
   -o ${CURRENT_DIRECTORY}/data/sample2_post_cutadapt.fastq \
   ${CURRENT_DIRECTORY}/data/sample2_post_umi_extraction.fastq > ${CURRENT_DIRECTORY}/data/sample2_cutadapt_log_file.txt
 
-${CURRENT_DIRECTORY}/scripts/agrepNestAligner.sh \
+${CURRENT_DIRECTORY}/../agrepNestAligner.sh \
   -x 1 \
   -@ 1 \
   -i ${CURRENT_DIRECTORY}/data/sample2_post_cutadapt.fastq \
@@ -85,7 +82,7 @@ cutadapt \
   -o ${CURRENT_DIRECTORY}/data/sample3_post_cutadapt.fastq \
   ${CURRENT_DIRECTORY}/data/sample3_post_umi_extraction.fastq > ${CURRENT_DIRECTORY}/data/sample3_cutadapt_log_file.txt
 
-${CURRENT_DIRECTORY}/scripts/agrepNestAligner.sh \
+${CURRENT_DIRECTORY}/../agrepNestAligner.sh \
   -x 1 \
   -@ 1 \
   -i ${CURRENT_DIRECTORY}/data/sample3_post_cutadapt.fastq \
@@ -110,7 +107,7 @@ cutadapt \
   -o ${CURRENT_DIRECTORY}/data/sample4_post_cutadapt.fastq \
   ${CURRENT_DIRECTORY}/data/sample4_post_umi_extraction.fastq > ${CURRENT_DIRECTORY}/data/sample4_cutadapt_log_file.txt
 
-${CURRENT_DIRECTORY}/scripts/agrepNestAligner.sh \
+${CURRENT_DIRECTORY}/../agrepNestAligner.sh \
   -x 1 \
   -@ 1 \
   -i ${CURRENT_DIRECTORY}/data/sample4_post_cutadapt.fastq \
@@ -122,7 +119,7 @@ echo ""
 
 
 # consolidate alignment information to create count matrix with rows corresponding to ncRNAs and columns corresponding to samples
-${CURRENT_DIRECTORY}/scripts/create_count_matrix.sh \
+${CURRENT_DIRECTORY}/../create_count_matrix.sh \
   -i ${CURRENT_DIRECTORY}/data/alignment_output/x1/
 
 echo ""
