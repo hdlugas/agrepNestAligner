@@ -61,10 +61,13 @@ cutadapt \
 ### 3.2. Build reference database
 Building a reference database from the reference FASTA file greatly increases speed and is a necessary step in using agrepNestAligner. If the length of the shortest/longest read in the reference FASTA file is S/L and the maximum number of mismatches allowed is N, then a FASTA file with all reads of length M-N to M+N for each M=S,S+1,S+2,...,L-2,L-1,L is created, resulting in (L-S)+1 FASTA files. For a given read in some sample's FASTQ file with length A, the specific FASTA file with all reads of length A-N to A+N is used as the reference to avoid regular expression matching with agrep on reference sequences that are either too short or too long to correspond to the given read. 
 
-To see the usage of the script build_reference_database.sh, run:
+To view the usage instructions and parameter descriptions of the script build_reference_database.sh, run:
 ```
 ./build_reference_database.sh -h
+```
 
+The resulting message is:
+```
 Usage: ./build_reference_database.sh --min-nucleotides <INT> --max-nucleotides <INT> -x <INT> -r <reference_FASTA_file> -o <output_directory>
 
 Builds reference database corresponding to a reference FASTA file. This step is necessary prior to running agrepNestAligner.
@@ -90,10 +93,13 @@ For example, the following writes a reference database to $REFERENCE_ncRNA_DATAB
 
 <a name="run-aligner"></a>
 ### 3.3. Run agrepNestAligner
-Once the reference database is constructed, agrepNestAligner.sh can be used to align the reads of a given FASTQ file to the reference database. To see the usage of the script agrepNestAligner.sh, run:
+Once the reference database is constructed, agrepNestAligner.sh can be used to align the reads of a given FASTQ file to the reference database. To view the usage instructions and parameter descriptions of the script agrepNestAligner.sh, run:
 ```
 ./agrepNestAligner.sh -h
+```
 
+The resulting message is:
+```
 Usage: ./agrepNestAligner.sh -x <INT> -@ <INT> -i <input_FASTQ_file> -r <reference_database_directory> -o <output_directory>
 
 Aligns reads in a given FASTQ file to a reference database of ncRNAs using agrep.
@@ -119,10 +125,13 @@ For example, the following aligns the FASTA file $POST_CUTADAPT_FASTQ to the ref
 
 <a name="create-count-matrix"></a>
 ### 3.4. Create count matrix
-Once all samples are aligned with output written to the directory $ALIGNMENT_OUTPUT_DIRECTORY, the alignment information is consolidated into a count matrix with rows corresponding to ncRNAs and columns corresponding to samples. To see the usage of the script create_count_matrix.sh, run:
+Once all samples are aligned with output written to the directory $ALIGNMENT_OUTPUT_DIRECTORY, the alignment information is consolidated into a count matrix with rows corresponding to ncRNAs and columns corresponding to samples. To view the usage instructions and parameter description of the script create_count_matrix.sh, run:
 ```
 ./create_count_matrix.sh -h
+```
 
+The resulting message is:
+```
 Usage: ./create_count_matrix.sh -i <input_directory>
 
 Consolidates agrepNestAligner alignment information into count matrix with rows corresponding to ncRNAs and columns corresponding to samples. The tab-delimited text file count_matrix.txt will be written to the input_directory argument.
