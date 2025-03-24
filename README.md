@@ -32,21 +32,11 @@ conda deactivate
 ```
 For instructions on installing conda on your system, see [https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
 
-Additionally, you must make the files build_reference_database.sh, agrepNestAligner.sh, and create_count_matrix.sh executable with the following command:
-```
-chmod +x build_reference_database.sh agrepNestAligner.sh create_count_matrix.sh
-```
-
 <a name="usage"></a>
 ## 3. Usage
-For an example of the complete recommended workflow, download the toy_example directory, activate the agrepNestAligner_env conda environment, and make the example script example.sh executable using a command such as:
+For an example of the complete recommended workflow, clone the repository, navigate to the toy_example directory, activate the agrepNestAligner_env conda environment, and run the script example.sh using:
 ```
-(agrepNestAligner_env) user@hostname:/home/user/projects/data_analysis$ chmod +x /insert_path/example.sh
-```
-
-Then, run the script example.sh using:
-```
-(agrepNestAligner_env) user@hostname:/home/user/projects/data_analysis$ /insert_path/example.sh
+./example.sh
 ```
 
 <a name="preprocessing"></a>
@@ -73,7 +63,7 @@ Building a reference database from the reference FASTA file greatly increases sp
 
 To see the usage of the script build_reference_database.sh, run:
 ```
-(agrepNestAligner) user@hostname:/home/user/projects/data_analysis$ /insert_path/build_reference_database.sh -h
+./build_reference_database.sh -h
 
 Usage: ./build_reference_database.sh --min-nucleotides <INT> --max-nucleotides <INT> -x <INT> -r <reference_FASTA_file> -o <output_directory>
 
@@ -90,7 +80,7 @@ Options:
 
 For example, the following writes a reference database to $REFERENCE_ncRNA_DATABASE_DIRECTORY with reference ncRNA FASTA file $REFERENCE_ncRNAs_FASTA:
 ```
-/insert_path/build_reference_database.sh \
+./build_reference_database.sh \
   --min-nucleotides 16 \
   --max-nucleotides 120 \
   -x 1 \
@@ -102,7 +92,7 @@ For example, the following writes a reference database to $REFERENCE_ncRNA_DATAB
 ### 3.3. Run agrepNestAligner
 Once the reference database is constructed, agrepNestAligner.sh can be used to align the reads of a given FASTQ file to the reference database. To see the usage of the script agrepNestAligner.sh, run:
 ```
-(agrepNestAligner) user@hostname:/home/user/projects/data_analysis$ /insert_path/agrepNestAligner.sh -h
+./agrepNestAligner.sh -h
 
 Usage: ./agrepNestAligner.sh -x <INT> -@ <INT> -i <input_FASTQ_file> -r <reference_database_directory> -o <output_directory>
 
@@ -119,7 +109,7 @@ Options:
 
 For example, the following aligns the FASTA file $POST_CUTADAPT_FASTQ to the reference database $REFERENCE_ncRNA_DATABASE_DIRECTORY and writes the output to the directory $ALIGNMENT_OUTPUT_DIRECTORY:
 ```
-/insert_path/agrepNestAligner.sh \
+./agrepNestAligner.sh \
   -x 1 \
   -@ 1 \
   -i $POST_CUTADAPT_FASTQ \
@@ -131,7 +121,7 @@ For example, the following aligns the FASTA file $POST_CUTADAPT_FASTQ to the ref
 ### 3.4. Create count matrix
 Once all samples are aligned with output written to the directory $ALIGNMENT_OUTPUT_DIRECTORY, the alignment information is consolidated into a count matrix with rows corresponding to ncRNAs and columns corresponding to samples. To see the usage of the script create_count_matrix.sh, run:
 ```
-(agrepNestAligner) user@hostname:/home/user/projects/data_analysis$ /insert_path/create_count_matrix.sh -h
+./create_count_matrix.sh -h
 
 Usage: ./create_count_matrix.sh -i <input_directory>
 
@@ -144,8 +134,7 @@ Options:
 
 For example, the following writes the count matrix to the directory $ALIGNMENT_OUTPUT_DIRECTORY once all agrepNestAligner alignments have been written to $ALIGNMENT_OUTPUT_DIRECTORY:
 ```
-/insert_path/create_count_matrix.sh \
-  -i $ALIGNMENT_OUTPUT_DIRECTORY
+./create_count_matrix.sh -i $ALIGNMENT_OUTPUT_DIRECTORY
 ```
 
 <a name="downstream-analysis"></a>
