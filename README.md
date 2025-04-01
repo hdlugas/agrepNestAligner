@@ -30,6 +30,16 @@ To deactivate the agrepNestAligner_env conda environement, run:
 ```
 conda deactivate
 ```
+
+Alternatively, one can create a conda environment, activate it, and install each dependency with:
+```
+conda create -n agrepNestAligner_env
+conda activate agrepNestAligner_env
+conda install -c bioconda cutadapt
+conda install -c bioconda umi_tools
+conda install tsnyder::tre
+```
+
 For instructions on installing conda on your system, see [https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
 
 <a name="usage"></a>
