@@ -35,9 +35,9 @@ Alternatively, one can create a conda environment, activate it, and install each
 ```
 conda create -n agrepNestAligner_env
 conda activate agrepNestAligner_env
-conda install -c bioconda cutadapt
-conda install -c bioconda umi_tools
+conda install -c bioconda -c conda-forge umi_tools
 conda install tsnyder::tre
+conda install bioconda::cutadapt
 ```
 
 For instructions on installing conda on your system, see [https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
